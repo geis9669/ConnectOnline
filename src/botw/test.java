@@ -11,7 +11,6 @@ import java.util.Set;
 
 public class test {
 	public static void main(String[] args) {
-		
 		try {
 			Set<String> korokSeedsM = new HashSet<>();
 			String[] webSites = {"Akkala", "Central_Hyrule", "Dueling_Peaks", 
@@ -85,6 +84,23 @@ public class test {
 
 //		System.out.println("number of items: " + korokSeeds.size());
 		// print the info I want to know.
+	}
+	
+	private static void loadhyruleMap()
+	{
+		try {
+			URL url = new URL("https://www.ign.com/maps/the-legend-of-zelda-breath-of-the-wild/hyrule");
+			String separator = "\n-\n";
+			getKorokSeedSet(url, separator);
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 
 	private static Set<String> getKorokSeedSet(URL url,  String separator) throws IOException {
