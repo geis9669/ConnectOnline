@@ -133,7 +133,7 @@ public class test {
 	}
 
 	private static void saveFile(String info, String name) {
-		String filename = "KorokSeeds"+name+".txt";
+		String filename = "resources/KorokSeeds"+name+".txt";
 
 		try (FileOutputStream saveStream = new FileOutputStream(filename);
 				ObjectOutputStream output = new ObjectOutputStream(saveStream)) {
