@@ -16,6 +16,8 @@ import javax.swing.ListSelectionModel;
 public class BotwPanel extends JPanel{
 	private BotwController resources;
 	
+	private JLabel acceptedLabel;
+	private JScrollPane acceptedScrollPane;
 	public BotwPanel(BotwController app)
 	{
 		super();
@@ -23,4 +25,33 @@ public class BotwPanel extends JPanel{
 		this.setLayout(null);
 		this.setBackground(Color.RED);
 		
+		acceptedLabel = new JLabel("markers to keep");
+		this.add(acceptedLabel);
+		JList<String> acceptedMapMarkers = new JList<>();
+		DefaultListModel<String> a_Model = new DefaultListModel<>();
+		acceptedMapMarkers.setModel(a_Model);
+		acceptedMapMarkers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		acceptedMapMarkers.setSelectedIndex(0);
+		acceptedScrollPane = createJScrollPane();
+		acceptedScrollPane.setViewportView(acceptedMapMarkers);
+		this.add(acceptedScrollPane);
+	}
+	
+	private JScrollPane createJScrollPane()
+	{
+		JScrollPane scrollViewer = new JScrollPane();
+		scrollViewer.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollViewer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		return scrollViewer;
+	}
+	
+	public void newSize(Dimension newSize){
+		int inset = 10;
+		acceptedLabel.setLocation(inset, inset);//x,y
+		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),25);
+		acceptedScrollPane.setLocation(acceptedLabel.getX(), acceptedLabel.getY()+acceptedLabel.getHeight());
+		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
+	}
+
 }
