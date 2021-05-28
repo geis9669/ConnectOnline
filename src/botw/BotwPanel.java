@@ -29,6 +29,14 @@ public class BotwPanel extends JPanel{
 		this.add(acceptedLabel);
 		JList<String> acceptedMapMarkers = new JList<>();
 		DefaultListModel<String> a_Model = new DefaultListModel<>();
+		HashMap<String, String> mapMarkers = new HashMap<>();
+		String[] list = resources.gettingMapMarkers();
+		for(String marker : list){
+			String d = "alt=\"";//divider
+			int start = marker.indexOf(d)+d.length();
+			mapMarkers.put(marker.substring(start, marker.indexOf("\"",start+1 )), marker);
+		}
+		a_Model.addAll(mapMarkers.keySet());
 		acceptedMapMarkers.setModel(a_Model);
 		acceptedMapMarkers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		acceptedMapMarkers.setSelectedIndex(0);
