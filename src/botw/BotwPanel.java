@@ -18,12 +18,25 @@ public class BotwPanel extends JPanel{
 	
 	private JLabel acceptedLabel;
 	private JScrollPane acceptedScrollPane;
+	private JLabel removeLabel;
+	private JScrollPane removeScrollPane;
 	public BotwPanel(BotwController app)
 	{
 		super();
 		this.resources = app;
 		this.setLayout(null);
 		this.setBackground(Color.RED);
+		
+		JScrollPane scrollViewer = new JScrollPane();
+		scrollViewer.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollViewer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		JTextArea textArea = new JTextArea();
+		scrollViewer.add(textArea);
+		this.add(scrollViewer);
+		
+		JScrollPane htmlview = createJScrollPane();
+		JScrollPane rejected = createJScrollPane();
 		
 		acceptedLabel = new JLabel("markers to keep");
 		this.add(acceptedLabel);
@@ -43,6 +56,19 @@ public class BotwPanel extends JPanel{
 		acceptedScrollPane = createJScrollPane();
 		acceptedScrollPane.setViewportView(acceptedMapMarkers);
 		this.add(acceptedScrollPane);
+		
+		removeLabel = new JLabel("markers to remove");
+//		removeLabel.setBackground(Color.WHITE);
+		this.add(removeLabel);
+		JList<String> removeMapMarkers = new JList<>();
+		DefaultListModel<String> r_Model = new DefaultListModel<>();
+//		r_Model.addAll();
+		removeMapMarkers.setModel(r_Model);
+		removeMapMarkers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		removeMapMarkers.setSelectedIndex(0);
+		removeScrollPane = createJScrollPane();
+		removeScrollPane.setViewportView(removeMapMarkers);
+		this.add(removeScrollPane);
 	}
 	
 	private JScrollPane createJScrollPane()
@@ -60,6 +86,11 @@ public class BotwPanel extends JPanel{
 		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),25);
 		acceptedScrollPane.setLocation(acceptedLabel.getX(), acceptedLabel.getY()+acceptedLabel.getHeight());
 		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
+		
+		removeLabel.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+10,acceptedLabel.getY());
+		removeLabel.setSize(acceptedLabel.getSize());
+		removeScrollPane.setLocation(removeLabel.getX(), removeLabel.getY()+removeLabel.getHeight());
+		removeScrollPane.setSize(acceptedScrollPane.getSize());
 	}
 
 }
