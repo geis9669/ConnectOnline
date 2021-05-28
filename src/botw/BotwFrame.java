@@ -9,10 +9,13 @@ import javax.swing.JFrame;
 
 public class BotwFrame extends JFrame{
 	private Dimension currentSize;
+	private BotwPanel panel;
 	public BotwFrame() {
 		
 		try {
 			BotwController app = new BotwController();
+			panel = new BotwPanel(app);
+			this.add(panel);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(ERROR);
@@ -24,6 +27,7 @@ public class BotwFrame extends JFrame{
 		this.setTitle("BreathOfTheWildHyruleMapMarkers");
 		
 		currentSize = this.getSize();
+		panel.newSize(currentSize);
 		this.setVisible(true);
 	}
 	
@@ -35,6 +39,7 @@ public class BotwFrame extends JFrame{
 		public void componentResized(ComponentEvent e) {
 			Dimension newSize = e.getComponent().getSize();
 			//check if the new size is actually a new size
+			panel.newSize(newSize);
 		}
 	}
 
