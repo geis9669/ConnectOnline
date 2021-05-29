@@ -142,6 +142,9 @@ public class BotwPanel extends JPanel{
 	/*
 	 * need to make a way of removing Items from the list
 	 * need to make a way to save the modified file.
+	 * 
+	 * add a box to be able to add qualifiers like the string has to contain "korok" to stay, 
+	 * and for it to remove the item if it has the string init. 
 	 */
 
 }
