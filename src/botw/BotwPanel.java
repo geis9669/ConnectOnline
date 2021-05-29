@@ -24,6 +24,7 @@ public class BotwPanel extends JPanel{
 	private JLabel removeLabel;
 	private JScrollPane removeScrollPane;
 	private JButton removeButton;
+	private JButton addButton;
 	public BotwPanel(BotwController app)
 	{
 		super();
@@ -86,6 +87,18 @@ public class BotwPanel extends JPanel{
 		});
 		this.add(removeButton);
 		
+		addButton = new JButton("add");
+		addButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent click)
+			{
+				int index = removeMapMarkers.getSelectedIndex();
+				if(index<0) {return;}
+				String value = r_Model.remove(index);
+				//could make a check for null
+				a_Model.addElement(value);
+			}
+		});
+		this.add(addButton);
 	}
 	
 	private JScrollPane createJScrollPane()
@@ -99,13 +112,16 @@ public class BotwPanel extends JPanel{
 	
 	public void newSize(Dimension newSize){
 		int inset = 5;
+		int buttonHeight = 25;
 		acceptedLabel.setLocation(inset, inset);//x,y
-		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),25);
+		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),buttonHeight);
 		acceptedScrollPane.setLocation(acceptedLabel.getX(), acceptedLabel.getY()+acceptedLabel.getHeight());
 		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
 		
 		removeButton.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+10 ,acceptedScrollPane.getY());
-		removeButton.setSize((removeLabel.getX()-inset) - removeButton.getX(),25);
+		removeButton.setSize((removeLabel.getX()-inset) - removeButton.getX(),buttonHeight);
+		addButton.setLocation(removeButton.getX(), removeButton.getY()+inset+buttonHeight);
+		addButton.setSize(removeButton.getSize());
 		
 		removeLabel.setSize(acceptedLabel.getSize());
 		removeLabel.setLocation((int) (newSize.getWidth()-(removeLabel.getWidth()+inset+17)),acceptedLabel.getY());
