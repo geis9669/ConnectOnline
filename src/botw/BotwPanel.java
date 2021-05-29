@@ -3,9 +3,12 @@ package botw;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -20,6 +23,7 @@ public class BotwPanel extends JPanel{
 	private JScrollPane acceptedScrollPane;
 	private JLabel removeLabel;
 	private JScrollPane removeScrollPane;
+	private JButton removeButton;
 	public BotwPanel(BotwController app)
 	{
 		super();
@@ -69,6 +73,20 @@ public class BotwPanel extends JPanel{
 		removeScrollPane = createJScrollPane();
 		removeScrollPane.setViewportView(removeMapMarkers);
 		this.add(removeScrollPane);
+		
+		removeButton = new JButton("remove");
+		removeButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent click)
+			{
+				int index = acceptedMapMarkers.getSelectedIndex();
+				if(index<0) {return;}
+				String value = a_Model.remove(index);
+				//could make a check for null
+				r_Model.addElement(value);
+			}
+		});
+		this.add(removeButton);
+		
 	}
 	
 	private JScrollPane createJScrollPane()
@@ -86,6 +104,9 @@ public class BotwPanel extends JPanel{
 		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),25);
 		acceptedScrollPane.setLocation(acceptedLabel.getX(), acceptedLabel.getY()+acceptedLabel.getHeight());
 		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
+		
+		removeButton.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+10 ,acceptedScrollPane.getY());
+		removeButton.setSize((removeLabel.getX()-inset) - removeButton.getX(),25);
 		
 		removeLabel.setSize(acceptedLabel.getSize());
 		removeLabel.setLocation((int) (newSize.getWidth()-(removeLabel.getWidth()+inset+17)),acceptedLabel.getY());
