@@ -81,14 +81,14 @@ public class BotwPanel extends JPanel{
 	}
 	
 	public void newSize(Dimension newSize){
-		int inset = 10;
+		int inset = 5;
 		acceptedLabel.setLocation(inset, inset);//x,y
 		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),25);
 		acceptedScrollPane.setLocation(acceptedLabel.getX(), acceptedLabel.getY()+acceptedLabel.getHeight());
 		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
 		
-		removeLabel.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+10,acceptedLabel.getY());
 		removeLabel.setSize(acceptedLabel.getSize());
+		removeLabel.setLocation((int) (newSize.getWidth()-(removeLabel.getWidth()+inset+17)),acceptedLabel.getY());
 		removeScrollPane.setLocation(removeLabel.getX(), removeLabel.getY()+removeLabel.getHeight());
 		removeScrollPane.setSize(acceptedScrollPane.getSize());
 		
