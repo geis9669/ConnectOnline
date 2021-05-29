@@ -75,32 +75,40 @@ public class BotwPanel extends JPanel{
 		this.add(removeScrollPane);
 		
 		removeButton = new JButton("remove");
-		removeButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent click)
-			{
-				int index = acceptedMapMarkers.getSelectedIndex();
-				if(index<0) {return;}
-				String value = a_Model.remove(index);
-				//could make a check for null
-				r_Model.addElement(value);
-				removeMapMarkers.setSelectedIndex(r_Model.getSize()-1);
-			}
-		});
+		addActionMoveItemToOther(removeButton, acceptedMapMarkers, a_Model, removeMapMarkers, r_Model);
 		this.add(removeButton);
 		
 		addButton = new JButton("add");
-		addButton.addActionListener(new ActionListener(){
+		addActionMoveItemToOther(addButton, removeMapMarkers, r_Model, acceptedMapMarkers, a_Model);
+		this.add(addButton);
+	}
+
+	/**
+	 * Adds the action of removing the selected item from one JList and its model to
+	 * a different JList and its model when the button is pressed. It adds the item
+	 * to the end of the list.
+	 * 
+	 * @param button The button to add this action to.
+	 * @param fromList  
+	 * @param fromModel
+	 * @param toList
+	 * @param toModel
+	 */
+	private void addActionMoveItemToOther(JButton button, 
+			JList<String> fromList, DefaultListModel<String> fromModel, 
+			JList<String> toList, DefaultListModel<String> toModel) 
+	{
+		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent click)
 			{
-				int index = removeMapMarkers.getSelectedIndex();
+				int index = fromList.getSelectedIndex();
 				if(index<0) {return;}
-				String value = r_Model.remove(index);
+				String value = fromModel.remove(index);
 				//could make a check for null
-				a_Model.addElement(value);
-				acceptedMapMarkers.setSelectedIndex(a_Model.getSize()-1);
+				toModel.addElement(value);
+				toList.setSelectedIndex(toModel.getSize()-1);
 			}
 		});
-		this.add(addButton);
 	}
 	
 	private JScrollPane createJScrollPane()
