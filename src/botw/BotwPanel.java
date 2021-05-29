@@ -83,6 +83,7 @@ public class BotwPanel extends JPanel{
 				String value = a_Model.remove(index);
 				//could make a check for null
 				r_Model.addElement(value);
+				removeMapMarkers.setSelectedIndex(r_Model.getSize()-1);
 			}
 		});
 		this.add(removeButton);
@@ -96,6 +97,7 @@ public class BotwPanel extends JPanel{
 				String value = r_Model.remove(index);
 				//could make a check for null
 				a_Model.addElement(value);
+				acceptedMapMarkers.setSelectedIndex(a_Model.getSize()-1);
 			}
 		});
 		this.add(addButton);
