@@ -91,6 +91,11 @@ public class BotwPanel extends JPanel{
 		removeLabel.setSize(acceptedLabel.getSize());
 		removeScrollPane.setLocation(removeLabel.getX(), removeLabel.getY()+removeLabel.getHeight());
 		removeScrollPane.setSize(acceptedScrollPane.getSize());
+		
 	}
+	/*
+	 * need to make a way of removing Items from the list
+	 * need to make a way to save the modified file.
+	 */
 
 }
