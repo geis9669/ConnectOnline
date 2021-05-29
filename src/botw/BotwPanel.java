@@ -48,7 +48,8 @@ public class BotwPanel extends JPanel{
 		DefaultListModel<String> a_Model = new DefaultListModel<>();
 		HashMap<String, String> mapMarkers = new HashMap<>();
 		String[] list = resources.gettingMapMarkers();
-		for(String marker : list){
+		for(String marker : list)
+		{
 			String d = "alt=\"";//divider
 			int start = marker.indexOf(d)+d.length();
 			mapMarkers.put(marker.substring(start, marker.indexOf("\"",start+1 )), marker);
@@ -61,12 +62,10 @@ public class BotwPanel extends JPanel{
 		acceptedScrollPane.setViewportView(acceptedMapMarkers);
 		this.add(acceptedScrollPane);
 		
-		removeLabel = new JLabel("markers to remove");
-//		removeLabel.setBackground(Color.WHITE);
+		removeLabel = new JLabel("markers to leave out");
 		this.add(removeLabel);
 		JList<String> removeMapMarkers = new JList<>();
 		DefaultListModel<String> r_Model = new DefaultListModel<>();
-//		r_Model.addAll();
 		removeMapMarkers.setModel(r_Model);
 		removeMapMarkers.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		removeMapMarkers.setSelectedIndex(0);
