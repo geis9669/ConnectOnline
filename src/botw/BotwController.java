@@ -73,6 +73,26 @@ public class BotwController {
 		return listItems;//Arrays.asList(listItems);
 	}
 	
+	public static void moveIfContains(List<String> a, List<String> b, String condition)
+	{
+		for(int i = a.size()-1; i>-1; i--)
+		{
+			if(a.get(i) != null && a.get(i).contains(condition))
+			{
+				String move = a.remove(i);
+				b.add(move);
+			}
+		}
+	}
+	/*
+	 * a.size()
+	 * 
+	 * a.get(i).contains(condition) biggest
+	 * 
+	 * String move = a.remove(i);
+	 * b.add(move);
+	 */
+	
 	/*
 	 * Ask user for the file to open and the webpage
 	 * read in the web page
