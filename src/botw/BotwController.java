@@ -84,6 +84,18 @@ public class BotwController {
 			}
 		}
 	}
+	
+	public static <T> void moveIfContains(List<T> a, List<T> b, MatchCondition<T> condition)
+	{
+		for(int i = a.size()-1; i>-1; i--)
+		{
+			if(a.get(i) != null && condition.matchCondition(a.get(i)))
+			{
+				T move = a.remove(i);
+				b.add(move);
+			}
+		}
+	}
 	/*
 	 * a.size()
 	 * 
