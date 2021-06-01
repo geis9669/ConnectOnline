@@ -32,17 +32,6 @@ public class BotwPanel extends JPanel{
 		this.setLayout(null);
 		this.setBackground(Color.RED);
 		
-		JScrollPane scrollViewer = new JScrollPane();
-		scrollViewer.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollViewer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
-		JTextArea textArea = new JTextArea();
-		scrollViewer.add(textArea);
-		this.add(scrollViewer);
-		
-		JScrollPane htmlview = createJScrollPane();
-		JScrollPane rejected = createJScrollPane();
-		
 		acceptedLabel = new JLabel("markers to keep");
 		this.add(acceptedLabel);
 		JList<String> acceptedMapMarkers = new JList<>();
