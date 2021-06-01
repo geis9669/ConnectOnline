@@ -118,7 +118,7 @@ public class BotwPanel extends JPanel{
 		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
 		
 		removeButton.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+10 ,acceptedScrollPane.getY());
-		removeButton.setSize((removeLabel.getX()-inset) - removeButton.getX(),buttonHeight);
+		removeButton.setSize((removeLabel.getX()-3) - removeButton.getX() - 3,buttonHeight);
 		addButton.setLocation(removeButton.getX(), removeButton.getY()+inset+buttonHeight);
 		addButton.setSize(removeButton.getSize());
 		
