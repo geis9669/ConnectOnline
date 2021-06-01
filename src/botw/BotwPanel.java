@@ -139,6 +139,26 @@ public class BotwPanel extends JPanel{
 		removeScrollPane.setSize(acceptedScrollPane.getSize());
 		
 	}
+	
+	/**
+	 * Move items from one list to the other list if the condition returns true.
+	 * @param <T>
+	 * @param from the list to remove items from
+	 * @param to the list to add the items to
+	 * @param condition used to determine which items to move, if true it move it to the other list,
+	 * false leave it alone.
+	 */
+	public static <T> void moveIfContains(DefaultListModel<T> from, DefaultListModel<T> to, MatchCondition<T> condition)
+	{
+		for(int i = from.size()-1; i>-1; i--)
+		{
+			if(from.get(i) != null && condition.matchCondition(from.get(i)))
+			{
+				T move = from.remove(i);
+				to.add(to.getSize(), move);
+			}
+		}
+	}
 	/*
 	 * need to make a way of removing Items from the list
 	 * need to make a way to save the modified file.
