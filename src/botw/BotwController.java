@@ -3,6 +3,7 @@ package botw;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -71,6 +72,21 @@ public class BotwController {
 			listItems[i] = spilter + listItems[i];
 		}
 		return listItems;//Arrays.asList(listItems);
+	}
+	
+	private void saveTextFile(String textToSave, String filename){
+		try (PrintWriter writer = new PrintWriter(filename);
+				Scanner output = new Scanner(textToSave)){
+			
+			while (output.hasNext()) {
+				String currentLine = output.nextLine();
+				writer.println(currentLine);
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void moveIfContains(List<String> a, List<String> b, String condition)
