@@ -20,8 +20,10 @@ import javax.swing.ListSelectionModel;
 
 public class BotwPanel extends JPanel{
 	private BotwController resources;
+	private HashMap<String, String> mapMarkers;
 	
 	private JLabel acceptedLabel;
+	private DefaultListModel<String> a_Model;
 	private JScrollPane acceptedScrollPane;
 	private JLabel removeLabel;
 	private JScrollPane removeScrollPane;
@@ -42,8 +44,8 @@ public class BotwPanel extends JPanel{
 		acceptedLabel = new JLabel("markers to keep");
 		this.add(acceptedLabel);
 		JList<String> acceptedMapMarkers = new JList<>();
-		DefaultListModel<String> a_Model = new DefaultListModel<>();
-		HashMap<String, String> mapMarkers = new HashMap<>();
+		a_Model = new DefaultListModel<>();
+		mapMarkers = new HashMap<>();
 		String[] list = resources.gettingMapMarkers();
 		for(String marker : list)
 		{
