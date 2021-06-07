@@ -74,6 +74,24 @@ public class BotwController {
 		return listItems;//Arrays.asList(listItems);
 	}
 	
+	public void saveHtmlDoc(String[] mapMarkers, String fileName)
+	{
+		Elements content = htmlDoc.children().get(0).children().get(1).children().get(3).children().get(0).children().get(1).children().get(0).children().get(0).children().get(0).children().get(0).children();// doc.getAllElements();
+		Element c = content.get(3);
+		String list = c.html();
+		
+		String newList = "";
+		for(String item : mapMarkers)
+		{
+			newList += item;
+		}
+		
+		String newDoc = htmlDoc.html().replaceFirst(list, newList);
+		fileName+= ".html";
+		saveTextFile(newDoc, fileName);
+		
+	}
+	
 	private void saveTextFile(String textToSave, String filename){
 		try (PrintWriter writer = new PrintWriter(filename);
 				Scanner output = new Scanner(textToSave)){
