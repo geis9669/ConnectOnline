@@ -106,9 +106,9 @@ public class BotwPanel extends JPanel{
 	 * get the strings in the text area, then separate it into a list, then pass
 	 * that into moveifContains method.
 	 * 
-	 * @param from
-	 * @param to
-	 * @param text
+	 * @param from list to remove items from
+	 * @param to list to add items to
+	 * @param text the text that will be separated by new lines, if matching it will move the item
 	 */
 	private void addActionRemoveMatching(JButton button, 
 			DefaultListModel<String> from, 
@@ -149,10 +149,10 @@ public class BotwPanel extends JPanel{
 	 * to the end of the list.
 	 * 
 	 * @param button The button to add this action to.
-	 * @param fromList  
-	 * @param fromModel
-	 * @param toList
-	 * @param toModel
+	 * @param fromList  to get the selected item
+	 * @param fromModel to remove the selected item
+	 * @param toList to select the item after adding it to the end of the list
+	 * @param toModel to add the item to
 	 */
 	private void addActionMoveItemToOther(JButton button, 
 			JList<String> fromList, DefaultListModel<String> fromModel, 
@@ -171,6 +171,12 @@ public class BotwPanel extends JPanel{
 		});
 	}
 	
+	/**
+	 * Creates a JScrollPane that will have scroll bars as needed for both
+	 * horizontal and vertical directions
+	 * 
+	 * @return 
+	 */
 	private JScrollPane createJScrollPane()
 	{
 		JScrollPane scrollViewer = new JScrollPane();
@@ -180,6 +186,10 @@ public class BotwPanel extends JPanel{
 		return scrollViewer;
 	}
 	
+	/**
+	 * Does the sizing and placement for all of the components according to the size given.
+	 * @param newSize the size for the panel
+	 */
 	public void newSize(Dimension newSize){
 		int inset = 5;
 		int buttonHeight = 25;
