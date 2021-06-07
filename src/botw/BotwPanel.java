@@ -5,10 +5,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -218,6 +220,34 @@ public class BotwPanel extends JPanel{
 		a_matchScrollPane.setLocation(addMatchingButton.getX(), addMatchingButton.getY()+addMatchingButton.getHeight()+inset);
 		a_matchScrollPane.setSize(addMatchingButton.getWidth(), (newSize.height - (a_matchScrollPane.getY()+inset)));
 	}
+	
+	/**
+     * gets the folder path from the user
+     * @param startPath can be null, where you want the user to start in the folder system
+     * @return the folder path or null if they canceled
+     */
+    private String getPathToSave(String startPath)
+    {
+    	String path = ".";
+    	int result = -993;
+    	JFileChooser fileChooser = new JFileChooser();
+    	if(startPath != null)
+    	{
+    		fileChooser.setCurrentDirectory(new File(startPath));
+    	}
+    	fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    	result = fileChooser.showSaveDialog(this);
+    	if(result == JFileChooser.APPROVE_OPTION)
+    	{
+    		path = fileChooser.getSelectedFile().getAbsolutePath();
+    	}
+    	else
+    	{
+    		path = null;
+
+    	}
+    	return path;
+    }
 	
 	/**
 	 * Move items from one list to the other list if the condition returns true.
