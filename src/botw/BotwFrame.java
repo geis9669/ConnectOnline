@@ -21,12 +21,12 @@ public class BotwFrame extends JFrame{
 			System.exit(ERROR);
 		}
 		
-		this.addComponentListener(new ResizeListener());
+		this.getContentPane().addComponentListener(new ResizeListener());
 		this.setSize(600,400);
 		this.setResizable(true);
 		this.setTitle("BreathOfTheWildHyruleMapMarkers");
 		
-		currentSize = this.getSize();
+		currentSize = this.getContentPane().getSize();
 		panel.newSize(currentSize);
 		this.setVisible(true);
 	}
