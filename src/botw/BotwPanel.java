@@ -122,24 +122,23 @@ public class BotwPanel extends JPanel{
 	public void newSize(Dimension newSize){
 		int inset = 5;
 		int buttonHeight = 25;
-		acceptedLabel.setLocation(inset, inset);//x,y
+		acceptedLabel.setLocation(inset, 0);//x,y
 		acceptedLabel.setSize((int) (newSize.getWidth()/2.5),buttonHeight);
 		acceptedScrollPane.setLocation(acceptedLabel.getX(), acceptedLabel.getY()+acceptedLabel.getHeight());
 		acceptedScrollPane.setSize(acceptedLabel.getWidth() ,(int) (newSize.getHeight()/2));
 		
-		removeButton.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+10 ,acceptedScrollPane.getY());
-		removeButton.setSize((removeLabel.getX()-3) - removeButton.getX() - 3,buttonHeight);
-		addButton.setLocation(removeButton.getX(), removeButton.getY()+inset+buttonHeight);
-		addButton.setSize(removeButton.getSize());
-		
 		removeLabel.setSize(acceptedLabel.getSize());
-		removeLabel.setLocation((int) (newSize.getWidth()-(removeLabel.getWidth()+inset+17)),acceptedLabel.getY());
+		removeLabel.setLocation((int) (newSize.getWidth()-(removeLabel.getWidth()+inset)),acceptedLabel.getY());
 		removeScrollPane.setLocation(removeLabel.getX(), removeLabel.getY()+removeLabel.getHeight());
 		removeScrollPane.setSize(acceptedScrollPane.getSize());
 		
-		matchScrollPane.setLocation(acceptedLabel.getX(), acceptedScrollPane.getY()+acceptedScrollPane.getHeight()+10);
+		removeButton.setLocation(acceptedLabel.getX()+acceptedLabel.getWidth()+inset ,acceptedScrollPane.getY());
+		removeButton.setSize(removeLabel.getX() - (removeButton.getX()+inset) ,buttonHeight);
+		addButton.setLocation(removeButton.getX(), removeButton.getY()+inset+buttonHeight);
+		addButton.setSize(removeButton.getSize());
+		
+		matchScrollPane.setLocation(acceptedLabel.getX(), acceptedScrollPane.getY()+acceptedScrollPane.getHeight()+inset);
 		matchScrollPane.setSize(acceptedScrollPane.getWidth(), (newSize.height - (matchScrollPane.getY()+inset+buttonHeight)));
-		;
 	}
 	
 	/**
