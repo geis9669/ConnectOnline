@@ -25,8 +25,10 @@ public class BotwPanel extends JPanel{
 	private JScrollPane removeScrollPane;
 	private JButton removeButton;
 	private JButton addButton;
-	private JScrollPane matchScrollPane;
+	private JScrollPane r_matchScrollPane;
 	private JButton removeMatchingButton;
+	private JScrollPane a_matchScrollPane;
+	private JButton addMatchingButton;
 	
 	public BotwPanel(BotwController app)
 	{
@@ -77,27 +79,55 @@ public class BotwPanel extends JPanel{
 		JTextArea removeMatching = new JTextArea();
 		removeMatching.setEditable(true);
 		removeMatching.setEnabled(true);
-		matchScrollPane = createJScrollPane();
-		matchScrollPane.setViewportView(removeMatching);
-		this.add(matchScrollPane);
+		r_matchScrollPane = createJScrollPane();
+		r_matchScrollPane.setViewportView(removeMatching);
+		this.add(r_matchScrollPane);
 		
 		removeMatchingButton = new JButton("remove if contains");
-		removeMatchingButton.addActionListener(new ActionListener() {
+		addActionRemoveMatching(removeMatchingButton, a_Model, r_Model, removeMatching);
+		this.add(removeMatchingButton);
+		
+		JTextArea addMatching = new JTextArea();
+		addMatching.setEditable(true);
+		addMatching.setEnabled(true);
+		a_matchScrollPane = createJScrollPane();
+		a_matchScrollPane.setViewportView(addMatching);
+		this.add(a_matchScrollPane);
+		
+		addMatchingButton = new JButton("add if contains");
+		addActionRemoveMatching(addMatchingButton, r_Model, a_Model, addMatching);
+		this.add(addMatchingButton);
+	}
+
+	/**
+	 * This will add the behavior of removing strings from one listModel to another
+	 * based off the strings from the JTextArea separated by new lines.
+	 * 
+	 * get the strings in the text area, then separate it into a list, then pass
+	 * that into moveifContains method.
+	 * 
+	 * @param from
+	 * @param to
+	 * @param text
+	 */
+	private void addActionRemoveMatching(JButton button, 
+			DefaultListModel<String> from, 
+			DefaultListModel<String> to, 
+			JTextArea text ) 
+	{
+		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
 				/*
-				 * get the strings in the removeMatching text area separate it into a list then pass
-				 * that into moveifContains method.
-				 * 
 				 * get string
 				 * make list from string
 				 * make condition for moveifcontains
 				 * pass the two lists and the condition to moveifcontains
 				 */
 				String newLine = "\n";
-				if(removeMatching.getText().length() <= 0) return;
-				String[] list = removeMatching.getText().split(newLine);
+				if(text.getText().length() <= 0) return;
+				String[] list = text.getText().split(newLine);
 				MatchCondition<String> condition = (a) -> {
 					boolean result = false;
 					int index = 0;
@@ -108,12 +138,9 @@ public class BotwPanel extends JPanel{
 					}
 					return result;
 				};
-				
-				moveIfContains(a_Model, r_Model, condition);
-				
+				moveIfContains(from, to, condition);
 			}
 		});
-		this.add(removeMatchingButton);
 	}
 
 	/**
@@ -173,9 +200,13 @@ public class BotwPanel extends JPanel{
 		
 		removeMatchingButton.setLocation(acceptedLabel.getX(), acceptedScrollPane.getY()+acceptedScrollPane.getHeight()+inset);
 		removeMatchingButton.setSize(acceptedScrollPane.getWidth(), buttonHeight);
+		r_matchScrollPane.setLocation(acceptedLabel.getX(), removeMatchingButton.getY()+removeMatchingButton.getHeight()+inset);
+		r_matchScrollPane.setSize(acceptedScrollPane.getWidth(), (newSize.height - (r_matchScrollPane.getY()+inset)));
 		
-		matchScrollPane.setLocation(acceptedLabel.getX(), removeMatchingButton.getY()+removeMatchingButton.getHeight()+inset);
-		matchScrollPane.setSize(acceptedScrollPane.getWidth(), (newSize.height - (matchScrollPane.getY()+inset)));
+		addMatchingButton.setLocation(removeLabel.getX(), removeMatchingButton.getY());
+		addMatchingButton.setSize(removeScrollPane.getWidth(), buttonHeight);
+		a_matchScrollPane.setLocation(addMatchingButton.getX(), addMatchingButton.getY()+addMatchingButton.getHeight()+inset);
+		a_matchScrollPane.setSize(addMatchingButton.getWidth(), (newSize.height - (a_matchScrollPane.getY()+inset)));
 	}
 	
 	/**
