@@ -115,13 +115,8 @@ public class JsoupFun {
 			e.printStackTrace();
 		}
 
-		
-		
-
 	}
 	
-	
-
 	private String loadtextFile(String filename) {
 		File inputFile = new File(filename);
 		String html = "";
