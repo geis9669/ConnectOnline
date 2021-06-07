@@ -11,8 +11,9 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 public class BotwFrame extends JFrame{
 	private Dimension currentSize;
@@ -41,17 +42,15 @@ public class BotwFrame extends JFrame{
 		
 		
 		JMenuBar menuBar = new JMenuBar();
-		JMenu saveMenu = new JMenu("Save as");
-		saveMenu.setMnemonic(KeyEvent.VK_S);
+		JMenuItem saveMenu = new JMenuItem("Save as");
+		saveMenu.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		saveMenu.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				/*
-				 * need to get the data and name
-				 */
-				
+				panel.saveHtml();
 			}
 		});
+		saveMenu.setEnabled(true);
 		menuBar.add(saveMenu);
 		this.setJMenuBar(menuBar);
 		
