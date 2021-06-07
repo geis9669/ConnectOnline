@@ -25,6 +25,9 @@ public class BotwPanel extends JPanel{
 	private JScrollPane removeScrollPane;
 	private JButton removeButton;
 	private JButton addButton;
+	private JTextArea removeMatching;
+	private JScrollPane matchScrollPane;
+	
 	public BotwPanel(BotwController app)
 	{
 		super();
@@ -70,6 +73,13 @@ public class BotwPanel extends JPanel{
 		addButton = new JButton("add");
 		addActionMoveItemToOther(addButton, removeMapMarkers, r_Model, acceptedMapMarkers, a_Model);
 		this.add(addButton);
+		
+		removeMatching = new JTextArea();
+		removeMatching.setEditable(true);
+		removeMatching.setEnabled(true);
+		matchScrollPane = createJScrollPane();
+		matchScrollPane.setViewportView(removeMatching);
+		this.add(matchScrollPane);
 	}
 
 	/**
@@ -127,6 +137,9 @@ public class BotwPanel extends JPanel{
 		removeScrollPane.setLocation(removeLabel.getX(), removeLabel.getY()+removeLabel.getHeight());
 		removeScrollPane.setSize(acceptedScrollPane.getSize());
 		
+		matchScrollPane.setLocation(acceptedLabel.getX(), acceptedScrollPane.getY()+acceptedScrollPane.getHeight()+10);
+		matchScrollPane.setSize(acceptedScrollPane.getWidth(), (newSize.height - (matchScrollPane.getY()+inset+buttonHeight)));
+		;
 	}
 	
 	/**
