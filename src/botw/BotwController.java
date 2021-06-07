@@ -86,7 +86,7 @@ public class BotwController {
 			newList += item;
 		}
 		
-		String newDoc = htmlDoc.html().replaceFirst(list, newList);
+		String newDoc = htmlDoc.html().replace(list, newList);
 		fileName+= ".html";
 		saveTextFile(newDoc, fileName);
 		
