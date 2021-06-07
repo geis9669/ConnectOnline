@@ -223,6 +223,20 @@ public class BotwPanel extends JPanel{
 		a_matchScrollPane.setSize(addMatchingButton.getWidth(), (newSize.height - (a_matchScrollPane.getY()+inset)));
 	}
 	
+	public void saveHtml()
+	{
+		String fileName = getPathToSave(null);
+		if(fileName == null) return;
+		
+		String[] values = new String[a_Model.getSize()];
+		for(int index = 0; index < a_Model.getSize(); index++)
+		{
+			values[index] = mapMarkers.get(a_Model.get(index));
+		}
+		
+		resources.saveHtmlDoc(values, fileName);
+	}
+	
 	/**
      * gets the folder path from the user
      * @param startPath can be null, where you want the user to start in the folder system
