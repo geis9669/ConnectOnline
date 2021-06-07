@@ -1,4 +1,4 @@
-package botw;
+package botw.firstTests;
 
 public class KorokSeed {
 	private String info;

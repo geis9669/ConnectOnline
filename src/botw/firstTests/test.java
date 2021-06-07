@@ -1,4 +1,4 @@
-package botw;
+package botw.firstTests;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
