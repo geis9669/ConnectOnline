@@ -26,6 +26,7 @@ public class BotwPanel extends JPanel{
 	private JButton removeButton;
 	private JButton addButton;
 	private JScrollPane matchScrollPane;
+	private JButton removeMatchingButton;
 	
 	public BotwPanel(BotwController app)
 	{
@@ -79,6 +80,40 @@ public class BotwPanel extends JPanel{
 		matchScrollPane = createJScrollPane();
 		matchScrollPane.setViewportView(removeMatching);
 		this.add(matchScrollPane);
+		
+		removeMatchingButton = new JButton("remove if contains");
+		removeMatchingButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				/*
+				 * get the strings in the removeMatching text area separate it into a list then pass
+				 * that into moveifContains method.
+				 * 
+				 * get string
+				 * make list from string
+				 * make condition for moveifcontains
+				 * pass the two lists and the condition to moveifcontains
+				 */
+				String newLine = "\n";
+				if(removeMatching.getText().length() <= 0) return;
+				String[] list = removeMatching.getText().split(newLine);
+				MatchCondition<String> condition = (a) -> {
+					boolean result = false;
+					int index = 0;
+					while(!result && index < list.length)
+					{
+						result = a.contains(list[index]);
+						index++;
+					}
+					return result;
+				};
+				
+				moveIfContains(a_Model, r_Model, condition);
+				
+			}
+		});
+		this.add(removeMatchingButton);
 	}
 
 	/**
@@ -136,8 +171,11 @@ public class BotwPanel extends JPanel{
 		addButton.setLocation(removeButton.getX(), removeButton.getY()+inset+buttonHeight);
 		addButton.setSize(removeButton.getSize());
 		
-		matchScrollPane.setLocation(acceptedLabel.getX(), acceptedScrollPane.getY()+acceptedScrollPane.getHeight()+inset);
-		matchScrollPane.setSize(acceptedScrollPane.getWidth(), (newSize.height - (matchScrollPane.getY()+inset+buttonHeight)));
+		removeMatchingButton.setLocation(acceptedLabel.getX(), acceptedScrollPane.getY()+acceptedScrollPane.getHeight()+inset);
+		removeMatchingButton.setSize(acceptedScrollPane.getWidth(), buttonHeight);
+		
+		matchScrollPane.setLocation(acceptedLabel.getX(), removeMatchingButton.getY()+removeMatchingButton.getHeight()+inset);
+		matchScrollPane.setSize(acceptedScrollPane.getWidth(), (newSize.height - (matchScrollPane.getY()+inset)));
 	}
 	
 	/**
