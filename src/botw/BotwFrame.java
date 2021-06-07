@@ -3,6 +3,8 @@ package botw;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -25,6 +27,12 @@ public class BotwFrame extends JFrame{
 		this.setSize(600,400);
 		this.setResizable(true);
 		this.setTitle("BreathOfTheWildHyruleMapMarkers");
+		this.addWindowListener(new WindowAdapter() {
+        	public void windowClosing(WindowEvent event)
+        	{
+        		System.exit(0);
+        	}
+        });
 		
 		currentSize = this.getContentPane().getSize();
 		panel.newSize(currentSize);
